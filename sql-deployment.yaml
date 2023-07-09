@@ -1,0 +1,30 @@
+apiversion: apps/vl
+kind: Deployment
+metadata:
+  name: mysql
+  labels:
+    app: mysql
+    component: backend
+spec:
+  selector:
+    matchlabels:
+      app: mysql
+      component: backend
+  replicas:
+  template:
+    metadata:
+      labels:
+        app: mysql
+        component: backend
+spec:
+  containers:
+  - name: mysql
+    image: 250220560712.dkr.ecr.us-east-1.amazonaws.com/mysql:v1.1
+    env:
+      - name: MYSQL_ROOT_PASSWORD
+        value: pass123 
+      - name: MYSQL_DATABASE
+        value: employees
+    ports:
+      - containerPort: 3306
+        protocol: TCP

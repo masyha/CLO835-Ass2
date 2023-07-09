@@ -2,22 +2,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: deployment-nginx
-  namespace: nginx
+  name: replica-set
+  namespace: myapp
   labels:
     course: clo835
-    week: week5
 spec:
   replicas: 2
   selector:
     matchLabels:
-      name: nginx-pod
+      name: myapp
   template:
     metadata:
       labels:
-        name: nginx-pod
+        name: myapp
     spec:
       containers:
-      - name: nginx-container
-        image: nginx
-        # httpd:2.4-alpine
+      - name: myapp
+        image: 250220560712.dkr.ecr.us-east-1.amazonaws.com/webapp:v1.2
+        
