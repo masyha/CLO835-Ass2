@@ -1,0 +1,22 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: replica-set
+  namespace: myapp
+  labels:
+    course: clo835
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: myapp
+  template:
+    metadata:
+      labels:
+        name: myapp
+    spec:
+      containers:
+      - name: myapp
+        image: 250220560712.dkr.ecr.us-east-1.amazonaws.com/webapp:v1.2
+        
