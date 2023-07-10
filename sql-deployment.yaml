@@ -1,4 +1,4 @@
-apiversion: apps/vl
+apiVersion: apps/vl
 kind: Deployment
 metadata:
   name: mysql
@@ -10,7 +10,7 @@ spec:
     matchlabels:
       app: mysql
       component: backend
-  replicas:
+  replicas: 3
   template:
     metadata:
       labels:
@@ -22,8 +22,14 @@ spec:
     image: 250220560712.dkr.ecr.us-east-1.amazonaws.com/mysql:v1.1
     env:
       - name: MYSQL_ROOT_PASSWORD
-        value: pass123 
+        value: "pass123" 
       - name: MYSQL_DATABASE
+        value: employees
+      - name: DBUSER
+        value: root
+      - name: DBPWD
+        value: "pass123"
+      - name: DATABASE
         value: employees
     ports:
       - containerPort: 3306
